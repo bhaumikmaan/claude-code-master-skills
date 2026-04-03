@@ -53,6 +53,16 @@ When reviewing code for security, check these categories systematically:
 - Token expiration and rotation
 - Rate limiting on auth endpoints
 
+### Payment Processing
+- Never generate custom credit card handling logic — no raw card numbers, CVVs, or custom tokenization. Flag any code that touches PAN data directly.
+- Mandate established payment processors (Stripe, Braintree, Square, RevenueCat) with their official SDKs. Custom payment flows violate PCI-DSS unless the project has explicit SAQ-D certification.
+- Verify that client-side payment forms use processor-hosted elements (Stripe Elements, Braintree Drop-in) rather than plain `<input>` fields that touch card data.
+
+### Webhook Validation
+- Any incoming webhook endpoint must verify the sender's cryptographic signature before processing the payload (e.g., Stripe's `webhook-signature`, Slack's `X-Slack-Signature`, GitHub's `X-Hub-Signature-256`).
+- Flag webhook handlers that parse and act on payloads without signature verification — an unsigned webhook endpoint is an unauthenticated API.
+- Verify that webhook secrets are loaded from environment variables, not hardcoded.
+
 ### Data Protection
 - Secrets not hardcoded in source (API keys, passwords, tokens)
 - Sensitive data not logged (passwords, tokens, PII)

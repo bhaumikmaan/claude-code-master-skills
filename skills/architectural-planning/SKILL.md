@@ -41,6 +41,7 @@ Use the tool token hierarchy to explore efficiently:
 - **Read with offset/limit** (heavy) — Only after Glob/Grep confirmed relevance. Read targeted sections, not entire files.
 
 Exploration checklist:
+- **Tech stack detection**: Scan the project root for build system config files (`.csproj`, `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `Gemfile`, `pom.xml`). Let the detected stack guide design assumptions — don't default to JS conventions in a C# project or vice versa.
 - Existing patterns and conventions for similar features
 - Related modules, services, or components that will be affected
 - Test patterns used in the project

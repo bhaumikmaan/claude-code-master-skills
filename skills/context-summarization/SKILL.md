@@ -82,6 +82,7 @@ When your summary will precede newer messages the reader will see next:
 
 - Include verbatim quotes for next-step anchoring -- paraphrasing introduces drift
 - Include full code snippets for critical changes -- they're the only thing that survives compaction reliably
+- For non-critical files, prefer structural outlines (function signatures, type definitions, import/export maps) over full code blocks. Full blocks are warranted only when the exact implementation matters for continuity.
 - Don't duplicate what's in CLAUDE.md or project config -- summarize work, not documentation
 - No filler. Every line must carry information that would be lost without this summary.
 

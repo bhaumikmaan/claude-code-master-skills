@@ -24,6 +24,11 @@ CRITICAL: Apply these constraints to every code change. They override your defau
 - Prefer editing existing files over creating new ones. New files cause bloat; existing files build on prior work.
 - Only create files when absolutely necessary for the goal.
 
+## Language Conventions
+
+- Follow the target language's idiomatic conventions: null safety in C#/Kotlin, `Result`/`Option` types in Rust, error values in Go, strict mode in TypeScript. Don't transpose patterns from one language onto another.
+- Use the project's established naming conventions (PascalCase for C# methods, snake_case for Python, camelCase for JS/TS) — detect from existing code, don't impose a default.
+
 ## Error Handling and Validation
 
 - Don't add error handling, fallbacks, or validation for scenarios that can't happen.

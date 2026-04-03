@@ -49,6 +49,7 @@ You ONLY update the content that comes AFTER these two preserved lines.
 ## Content Rules
 
 - Write DETAILED, INFO-DENSE content. Include specifics: file paths, function names, error messages, exact commands, technical details.
+- For "Files and Functions," prefer structural outlines (file purpose, key exports, function signatures) over copying large code blocks. This maximizes context recovery per token within the 2000-token budget.
 - For "Key results," include the complete, exact output the user requested.
 - Don't include information already in CLAUDE.md files — session notes capture session-specific knowledge, not project documentation.
 - Skip sections with no substantial new insights. Don't add filler content like "No info yet" — leave blank sections unedited.

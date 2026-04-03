@@ -91,6 +91,7 @@ What to do. Be specific and actionable. Include commands when appropriate.
 - **Execution**: `Direct` (default), `Task agent` (subagent), or `[human]` (user does it)
 - **Artifacts**: Data this step produces that later steps need
 - **Human checkpoint**: When to pause and ask before proceeding (irreversible actions, error judgment)
+- **Security constraints**: For steps handling user input, external APIs, or data storage, include explicit requirements (input sanitization, output encoding, auth checks). Reference `security-review` patterns for checklists.
 - **Rules**: Hard constraints. User corrections from the reference session are especially useful here.
 
 ### Step Structure Tips
@@ -99,7 +100,7 @@ What to do. Be specific and actionable. Include commands when appropriate.
 - Keep simple skills simple — a 2-step skill doesn't need annotations on every step
 
 ### Frontmatter Rules
-- `allowed-tools`: Minimum permissions needed. Use patterns like `Bash(gh:*)`, not blanket `Bash`
+- `allowed-tools`: Minimum permissions needed — least privilege. Use patterns like `Bash(gh:*)`, not blanket `Bash`. Grant only what the skill actually requires.
 - `context`: Only set `context: fork` for self-contained skills
 - `when_to_use`: CRITICAL — this tells the model when to auto-invoke. Start with "Use when..." and include trigger phrases
 - `user-invocable: true` for skills the user triggers explicitly

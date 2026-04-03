@@ -44,9 +44,12 @@ Actions that need explicit user approval:
 - Installing or removing dependencies
 - Network requests to external services
 - File operations outside the project directory
-- Destructive operations: `rm -rf`, dropping tables, overwriting uncommitted work
-- Running code downloaded from the internet (`curl | bash`, `eval` of remote content)
+- Destructive operations: `rm -rf`, overwriting uncommitted work
+- **Database mutations**: `DROP`, `TRUNCATE`, `DELETE` without `WHERE`, migration rollbacks (`migrate down`, `migrate reset`). These are irreversible in production and easy to misfire locally.
+- **Unvetted script execution**: `npx <package>` for packages not in the project's lockfile, `pip install` from URLs, `curl | bash`, `eval` of remote content
 - Modifying shell profiles, scheduled tasks, or system services
+
+When a skill specifies `allowed-tools` in its frontmatter, treat that as an upper bound on permissions — don't grant broader access than the skill declares, even if the user's allow rules would permit it.
 
 ### Environment Context
 Additional context that informs classification:

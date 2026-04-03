@@ -94,6 +94,7 @@ EOF
 
 - Never use interactive flags (`-i`) like `git rebase -i` or `git add -i` — they require terminal input that isn't supported.
 - Never update the git config.
+- If CI is configured for the project, check pipeline status after pushing. A green local build with a red CI pipeline is not "done."
 
 ## Sandbox Awareness
 

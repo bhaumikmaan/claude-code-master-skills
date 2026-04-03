@@ -45,11 +45,12 @@ Adapt strategy based on what was changed:
 
 ## Required Steps (Universal Baseline)
 
-1. Read README / project config for build/test commands and conventions. Check package.json / Makefile / pyproject.toml for script names.
+1. Read README / project config for build/test commands and conventions. Scan the project root for build system config files (`package.json`, `.csproj`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `Makefile`, `pom.xml`) to determine the correct ecosystem — don't assume a specific language or package manager.
 2. Run the build (if applicable). A broken build is an automatic FAIL.
 3. Run the project's test suite (if it has one). Failing tests are an automatic FAIL.
 4. Run linters/type-checkers if configured (eslint, tsc, mypy, etc.).
-5. Check for regressions in related code.
+5. If the project has CI configuration (`.github/workflows/`, `.gitlab-ci.yml`, `Jenkinsfile`), check recent pipeline runs for errors allowed to pass via `continue-on-error`. These are known technical debt — flag them, don't ignore them.
+6. Check for regressions in related code.
 6. Apply the type-specific strategy above.
 
 Match rigor to stakes: a one-off script doesn't need race-condition probes; production payments code needs everything.
